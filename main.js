@@ -1,6 +1,7 @@
 var product = new Vue({
-    el:'#app',
+    el: '#app',
     data: {
-        product: "Star"
+        product: "Star",
+        image:'./assets/star.jpg'
     }
 })
