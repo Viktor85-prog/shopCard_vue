@@ -26,11 +26,15 @@
                     <li v-for="material in details">{{material}}</li>
                 </ul>
 
-                <div v-for="variant in variants" :key="variant.variantColor">
-                    <p>{{variant.variantColor}}</p>
+                <div v-for="variant in variants" :key="variant.variantColor" class="colors">
+                    <p @mouseover="updateProduct(variant.variantImage)">{{variant.variantColor}}</p>
                 </div>
 
             </div>
+        </div>
+        <button v-on:click="addToCart">Add</button>
+        <div class="cart">
+            <p>Cart({{cart}})</p>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.0/dist/vue.js"></script>
