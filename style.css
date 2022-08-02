@@ -47,17 +47,23 @@ li {
 .colors p {
     width: 50px;
     height: 20px;
-    margin: 10px;
+    margin: 10px auto;
     border: 1px solid grey;
     text-align: center;
     cursor: pointer;
 }
 
-
+.color-box {
+    width: 60px;
+}
 button {
     width: 100px;
     height: 100px;
     margin: 10px;
+}
+
+.disabled {
+background-color: red;
 }
 .cart{
     width: 100px;

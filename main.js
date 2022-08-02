@@ -9,19 +9,21 @@ var product = new Vue({
         variants: [{
             variantId: 999,
             variantColor: 'gold',
-            variantImage: './assets/star_gold.jpg'
+            variantImage: './assets/star_gold.jpg',
+            fz: '15px'
         }, {
             variantId: 555,
             variantColor: 'yellow',
-            variantImage: './assets/star_yellow.jpg'
+            variantImage: './assets/star_yellow.jpg',
+            fz: '10px'
         }],
         cart: 0
     },
     methods: {
-        addToCart () {
+        addToCart() {
             this.cart += 1
         },
-        updateProduct (variantImage) {
+        updateProduct(variantImage) {
             this.image = variantImage
         }
     }

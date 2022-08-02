@@ -26,13 +26,17 @@
                     <li v-for="material in details">{{material}}</li>
                 </ul>
 
-                <div v-for="variant in variants" :key="variant.variantColor" class="colors">
-                    <p @mouseover="updateProduct(variant.variantImage)">{{variant.variantColor}}</p>
+                <div v-for="variant in variants" :key="variant.variantColor" class="colors color-box"
+                    :style="{backgroundColor:variant.variantColor}">
+                    <p :style="{fontSize:variant.fz}" @mouseover="updateProduct(variant.variantImage)">
+                        {{variant.variantColor}}</p>
                 </div>
 
             </div>
         </div>
-        <button v-on:click="addToCart">Add</button>
+        <button v-on:click="addToCart" :disabled="!inStock"
+        :class="{disabled:!inStock}"
+        >Add</button>
         <div class="cart">
             <p>Cart({{cart}})</p>
         </div>
