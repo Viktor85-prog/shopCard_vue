@@ -1,35 +1,37 @@
 Vue.component('product', {
     props: {
-        premium:{
-            type:Boolean,
-            required:true
+        premium: {
+            type: Boolean,
+            required: true
         }
     },
     template: `
-    <div class="product">
-    <div class="product-image">
-        <img v-bind:src="image" alt="">
-    </div>
-    <div class="product-info">
-        <h1>{{title}}</h1>
-        <!-- <h v-show="inStock">cool star</h> -->
-        <p v-if="inStock">In Stock</p>
-        <p v-else-if="!inStock">Allmost sold out</p>
-        <!-- <p v-else>Out Stock</p> -->
-        <p>Premium: {{premium}}</p>
-        <p>shipping: {{shipping}}</p>
-        <ul>
-            <li v-for="material in details">{{material}}</li>
-        </ul>
-
-        <div v-for="(variant, index) in variants" :key="variant.variantColor" class="colors color-box"
-            :style="{backgroundColor:variant.variantColor}">
-            <p :style="{fontSize:variant.fz}" @mouseover="updateProduct(index)">
-                {{variant.variantColor}}</p>
+    <div>
+        <div class="product">
+        <div class="product-image">
+            <img v-bind:src="image" alt="">
         </div>
-
+        <div class="product-info">
+            <h1>{{title}}</h1>
+            <!-- <h v-show="inStock">cool star</h> -->
+            <p v-if="inStock">In Stock</p>
+            <p v-else-if="!inStock">Allmost sold out</p>
+            <!-- <p v-else>Out Stock</p> -->
+            <p>Premium: {{premium}}</p>
+            <p>shipping: {{shipping}}</p>
+            <ul>
+                <li v-for="material in details">{{material}}</li>
+            </ul>
+            <div v-for="(variant, index) in variants" :key="variant.variantColor" class="colors color-box"
+                :style="{backgroundColor:variant.variantColor}">
+                <p :style="{fontSize:variant.fz}" @mouseover="updateProduct(index)">
+                    {{variant.variantColor}}</p>
+            </div>
+            </div>
+        
+            </div>
+            <button v-on:click="addToCart" :class="{disabled:!inStock}">Add</button>
     </div>
-</div>
 `,
     data() {
         return {
@@ -49,13 +51,12 @@ Vue.component('product', {
                 variantImage: './assets/star_yellow.jpg',
                 fz: '10px',
                 variantQuantity: 15
-            }],
-            cart: 0
+            }]
         }
     },
     methods: {
         addToCart() {
-            this.cart += 1
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
         },
         updateProduct(index) {
             this.selectedVariant = index
@@ -71,11 +72,11 @@ Vue.component('product', {
         inStock() {
             return this.variants[this.selectedVariant].variantQuantity
         },
-        shipping(){
-           if(this.premium){
-            return 'Free'
-           } 
-           return 2.99
+        shipping() {
+            if (this.premium) {
+                return 'Free'
+            }
+            return 2.99
         }
     }
 })
@@ -84,8 +85,14 @@ Vue.component('product', {
 
 var product = new Vue({
     el: '#app',
-    data:{
-        premium:true
+    data: {
+        premium: true,
+        cart: []
+    },
+    methods: {
+        updateCart(id) {
+            this.cart.push(id)
+        }
     }
 
 })
