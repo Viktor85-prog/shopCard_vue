@@ -86,3 +86,12 @@ margin:38px 30px;
     margin: 10px;
     padding: 10px;
 }
+
+.tab {
+    margin: 10px;
+}
+.activeTab {
+    font-size: 20px;
+    color: blue;
+    text-decoration:overline
+}
